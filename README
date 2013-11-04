@@ -1,4 +1,4 @@
-11/3/2012 @Xiao-Zhou
+11/3/2013 @Xiao-Zhou
 
 Assumptions:
 
@@ -7,6 +7,7 @@ Assumptions:
 - If the attributes in the original files are "NULL", then in the tables created, they will be "NULL" too.
 
 Explainations:
+Please note that the program requires MongoDB to run at "mongodb://localhost"
 1. "manage.py" - Automatically downloading JSON files from API using the txt files given. And put data into Mongodb tables.
 2. Four tables were created. 
    "companies" - store company information  (definition in "companyDao.py")
