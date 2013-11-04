@@ -1,0 +1,25 @@
+
+__author__ = 'xz'
+
+class CompanyDao:
+	company_attr_list = ["name","website", "blog", "description", "founded_date", "num_employees","permalink"]
+
+    def __init__(self, database):
+        self.db = database
+        self.investors = database.investors
+
+    def insert_entry(self, data):
+        print "inserting companyDao", data
+        company_dao = {}
+
+        for(attr in self.company_attr_list):
+        	company_dao.append(attr,data[attr])
+
+        # now insert the post
+        try:
+            self.investors.insert(company_dao)
+        except:
+            print "Error inserting company_dao"
+            print "Unexpected error:", sys.exc_info()[0]
+
+        return data['permalink']

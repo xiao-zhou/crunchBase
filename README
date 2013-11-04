@@ -1,0 +1,110 @@
+Assumptions:
+
+- All investment are in USD
+- For one funding amount, there could be several investors involved. I'll just use the total amount of the funding for each of the investor. Because the data didn't give the exact amount of each one, the credits will just be given to everyone.
+- If the attributes in the original files are "NULL", then in the tables created, they will be "NULL" too.
+
+Explainations:
+1. "manage.py" - Automatically downloading JSON files from API using the txt files given. And put data into Mongodb tables.
+2. Four tables were created. 
+   "companies" - store company information  (definition in "companyDao.py")
+   "companyFunding" - store company funding information (definition "companyfundingDao.py")
+   "investors" - store investor information (wethere it is company, person, or financial orgs) (definition in "investorsDao.py")
+   "investorsFunding" - store investor funding information (definition in "investorsFundingDao.py")
+   For details, please see the MongDB dump files.
+3. "query.py" - print the results of queries required
+4. Reasons to use MongoDB:
+   Input and output are both JSON.
+   Investors could be different types, and for a person, the "degree" could be an array, so NoSQL reduces the complexity.
+   Potential for scale
+
+
+Results:
+
+1. the top 10 companies in terms of cumulative funding 
+
+clearwire  - funding:  5700000000.0
+facebook  - funding:  2425700000.0
+dena  - funding:  2208000000.0
+solyndra  - funding:  1653860000.0
+fisker  - funding:  1451000000.0
+twitter  - funding:  1160166511.0
+groupon  - funding:  1147288416.0
+sirius  - funding:  1055750000.0
+wave-broadband  - funding:  1050000000.0
+bloom-energy  - funding:  980000000.0
+
+2. the top 10 companies in terms of change in funding from 2011 to 2012
+
+wave-broadband  - increased funding from 2011 to 2012:  1050000000.0
+enel-ogk  - increased funding from 2011 to 2012:  625000000.0
+greatpoint-energy  - increased funding from 2011 to 2012:  420000000.0
+nook-media  - increased funding from 2011 to 2012:  389500000.0
+solarcity  - increased funding from 2011 to 2012:  388940000.0
+palo-alto-networks  - increased funding from 2011 to 2012:  264000000.0
+fisker  - increased funding from 2011 to 2012:  202000000.0
+xiaomi  - increased funding from 2011 to 2012:  126000000.0
+nanosolar  - increased funding from 2011 to 2012:  120000000.0
+bloom-energy  - increased funding from 2011 to 2012:  100000000.0
+
+3. the top 10 investors in terms of cumulative funding
+Investor:  intel  - total funding:  5838500000.0
+Investor:  timewarner  - total funding:  5620000000.0
+Investor:  comcast  - total funding:  5620000000.0
+Investor:  brighthouse-inc  - total funding:  4700000000.0
+Investor:  google  - total funding:  4158000000.0
+Investor:  kleiner-perkins-caufield-byers  - total funding:  3575150000.0
+Investor:  digital-sky-technologies-fo  - total funding:  2800187000.0
+Investor:  goldman-sachs  - total funding:  2530299000.0
+Investor:  sprint-nextel  - total funding:  2500000000.0
+Investor:  eagle-river-holdings  - total funding:  2420000000.0
+
+4. the top 10 investors in terms of change in funding from 2011 to 2012
+Investor: gi-partners - increased funding from 2011 to 2012:  1050000000.0
+Investor: oak-hill-capital-partners - increased funding from 2011 to 2012:  1050000000.0
+Investor: russian-direct-investment-fund - increased funding from 2011 to 2012:  625000000.0
+Investor: microsoft - increased funding from 2011 to 2012:  300000000.0
+Investor: u-s-bancorp - increased funding from 2011 to 2012:  250000000.0
+Investor: dbl-investors - increased funding from 2011 to 2012:  227000000.0
+Investor: rizvi-traverse-management - increased funding from 2011 to 2012:  200000000.0
+Investor: citi-ventures - increased funding from 2011 to 2012:  200000000.0
+Investor: starbucks - increased funding from 2011 to 2012:  200000000.0
+Investor: crunchfund - increased funding from 2011 to 2012:  200000000.0
+
+
+Additional Info:
+if you want to know the information of each investor, then do a "querying" to the "Investors" table with key "permalink"....
+Results:
+Investor: gi-partners - increased funding from 2011 to 2012:  1050000000.0
+{u'gi-partners': {u'permalink': u'gi-partners', u'name': u'GI Partners', u'type': u'financial_org', u'homepage_url': u'http://gipartners.com', u'blog_url': u'', u'number_of_employees': None, u'founded_year': 2001, u'description': u'Investor'}}
+Investor: oak-hill-capital-partners - increased funding from 2011 to 2012:  1050000000.0
+{u'oak-hill-capital-partners': {u'permalink': u'oak-hill-capital-partners', u'name': u'Oak Hill Capital Partners', u'type': u'financial_org', u'homepage_url': u'http://www.oakhillcapital.com/', u'blog_url': u'', u'number_of_employees': None, u'founded_year': 1986, u'description': u''}}
+Investor: russian-direct-investment-fund - increased funding from 2011 to 2012:  625000000.0
+{u'russian-direct-investment-fund': {u'permalink': u'russian-direct-investment-fund', u'name': u'Russian Direct Investment Fund', u'type': u'financial_org', u'homepage_url': u'http://rdif.ru', u'blog_url': u'', u'number_of_employees': None, u'founded_year': 2011, u'description': u''}}
+Investor: microsoft - increased funding from 2011 to 2012:  300000000.0
+{u'microsoft': {u'permalink': u'microsoft', u'name': u'Microsoft', u'type': u'company', u'homepage_url': u'http://www.microsoft.com', u'blog_url': u'', u'number_of_employees': 90000, u'founded_year': 1974, u'description': u''}}
+Investor: u-s-bancorp - increased funding from 2011 to 2012:  250000000.0
+{u'u-s-bancorp': {u'permalink': u'u-s-bancorp', u'name': u'U.S. Bancorp', u'type': u'financial_org', u'homepage_url': u'http://www.usbank.com/', u'blog_url': u'', u'number_of_employees': None, u'founded_year': None, u'description': u'Venture Capital Firm'}}
+Investor: dbl-investors - increased funding from 2011 to 2012:  227000000.0
+{u'dbl-investors': {u'permalink': u'dbl-investors', u'name': u'DBL Investors', u'type': u'financial_org', u'homepage_url': u'http://www.dblinvestors.com/', u'blog_url': u'', u'number_of_employees': None, u'founded_year': None, u'description': None}}
+Investor: crunchfund - increased funding from 2011 to 2012:  200000000.0
+{u'crunchfund': {u'permalink': u'crunchfund', u'name': u'CrunchFund', u'type': u'financial_org', u'homepage_url': u'http://crunchfund.com/', u'blog_url': u'', u'number_of_employees': 4, u'founded_year': 2011, u'description': u''}}
+Investor: citi-ventures - increased funding from 2011 to 2012:  200000000.0
+{u'citi-ventures': {u'permalink': u'citi-ventures', u'name': u'Citi Ventures', u'type': u'financial_org', u'homepage_url': u'http://ventures.citi.com', u'blog_url': u'', u'number_of_employees': None, u'founded_year': None, u'description': u''}}
+Investor: rizvi-traverse-management - increased funding from 2011 to 2012:  200000000.0
+{u'rizvi-traverse-management': {u'permalink': u'rizvi-traverse-management', u'name': u'Rizvi Traverse Management', u'type': u'company', u'homepage_url': u'http://www.rizvitraverse.com/', u'blog_url': u'', u'number_of_employees': None, u'founded_year': None, u'description': u''}}
+Investor: starbucks - increased funding from 2011 to 2012:  200000000.0
+{u'starbucks': {u'permalink': u'starbucks', u'name': u'Starbucks', u'type': u'company', u'homepage_url': u'http://www.starbucks.in', u'blog_url': u'http://starbucksgossip.typepad.com/', u'number_of_employees': None, u'founded_year': 1971, u'description': u''}}
+
+
+
+Suggestions:
+- One improvement could be embedding the "companyFunding" table to "company" table, then querying the company information will be easier. In the same way, embedding the "investorsFunding" table to "investors" table.
+- Ralational databases could be used to store the data. I would imagine queries will be easier, although the design of the databases will require more considerations. I will still use 4 tables as I do now, but the Investor table will be more complicated. For example, person degree is an array in original data.
+- The programes are tested in macOS, Windows systems might have problems. The program could be tested on more systems.
+- For total funding raised, I could have used 'total_money_raised'. In this situation, I calcuted based on each funding round, because I prefered numerical data than converting from string.
+- Decouple "investorDao" and "investorFundingDao" by introduing controler module.
+- In the given "company_list" file, at least "thegenerationsnetwork" not found. I used "try" statement. All the companies that are not found should be considered.
+
+
+
