@@ -1,6 +1,6 @@
 import pymongo
 
-import etlUtil
+import util
 
 import companyDao
 
